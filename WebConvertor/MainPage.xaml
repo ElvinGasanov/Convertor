@@ -27,6 +27,7 @@
                     <x:String>SEK</x:String>
                     <x:String>CHF</x:String>
                     <x:String>JPY</x:String>
+                    <x:String>RUB</x:String>
                 </x:Array>
             </ResourceDictionary>
         </VerticalStackLayout.Resources>

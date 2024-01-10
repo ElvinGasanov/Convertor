@@ -24,6 +24,7 @@ namespace WebConvertor
 
         public ViewModel()
         {
+            MDatePicker = DateTime.Now;
 
             PropertyChanged += ViewModel_PropertyChanged;
 
@@ -119,13 +120,13 @@ namespace WebConvertor
             if (MPickerFrom != null && MPickerTo != null)
             {                
 
-                var currencyRateFrom = _xmlFileParser.ParseXML(formattedDate, MPickerFrom.ToString());
-
-                var currencyRateTo = _xmlFileParser.ParseXML(formattedDate, MPickerTo.ToString());
-
+                var currencyRateFrom =_xmlFileParser.ParseXML(formattedDate, MPickerFrom.ToString(), out float nom1);
+                
+                var currencyRateTo = _xmlFileParser.ParseXML(formattedDate, MPickerTo.ToString(), out float nom2);
+                
                 if (currencyRateFrom != 0 && currencyRateTo != 0)
                 {
-                    var newValue = MEntryFrom * currencyRateFrom / currencyRateTo;
+                    var newValue = MEntryFrom * (currencyRateFrom / nom1) / (currencyRateTo / nom2);
 
 
                     MConvertedValue = newValue.ToString();
